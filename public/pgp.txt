@@ -1,7 +1,7 @@
 canberkefe — PGP public key
 Email:       contact@canberkefe.dev
 Key ID:      0x006E0A32393BBEA4
-Fingerprint: 79FB6FF6FDB353ABB5E9AD05006E0A32393BBEA4
+Fingerprint: 79FB 6FF6 FDB3 53AB B5E9 AD05 006E 0A32 393B BEA4
 Created:     2026-05-07   Expires: 2028-05-06
 
 Verify the fingerprint before sending sensitive material.
