@@ -1,6 +1,6 @@
 # canberkefe.dev
 
-Astro static site. 3 themes (hacker / dark / light), terminal-styled landing,
+Astro static site. 3 themes (favorite / dark / light), terminal-styled landing,
 blog with content collections, tags pages, RSS, sitemap, JSON-LD structured data,
 Cloudflare Web Analytics ready, PGP-published public key.
 

@@ -1,5 +1,5 @@
 ---
-// cycles hacker → dark → light → hacker. persists to localStorage.
+// cycles favorite → dark → light → favorite. persists to localStorage.
 ---
 <button id="theme-toggle" class="theme-btn" type="button" aria-label="cycle theme">
   <span class="dot" aria-hidden="true"></span>
@@ -9,7 +9,7 @@
 <script is:inline>
   (function () {
     const KEY = 'cb_theme';
-    const order = ['hacker', 'dark', 'light'];
+    const order = ['favorite', 'dark', 'light'];
     const root = document.documentElement;
     const label = document.getElementById('theme-label');
     function apply(t) {
@@ -18,7 +18,7 @@
     }
     let cur;
     try { cur = localStorage.getItem(KEY); } catch (e) {}
-    if (!cur || !order.includes(cur)) cur = root.getAttribute('data-theme') || 'hacker';
+    if (!cur || !order.includes(cur)) cur = root.getAttribute('data-theme') || 'favorite';
     apply(cur);
 
     document.getElementById('theme-toggle').addEventListener('click', () => {

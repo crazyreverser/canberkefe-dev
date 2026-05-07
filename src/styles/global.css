@@ -2,7 +2,7 @@
    3 themes via [data-theme]:
      "dark"   — neutral developer dark (slate + cyan)
      "light"  — clean paper (warm cream + dark green)
-     "hacker" — kali-style: green/red/blue prompt segments on pure black
+     "favorite" — kali-style: green/red/blue prompt segments on pure black
 ─────────────────────────────────────────────────────────────────── */
 
 :root {
@@ -25,9 +25,9 @@
   --close-fg:     #d8dde6;
 }
 
-/* default = hacker (kali palette) */
+/* default = favorite (kali palette) */
 :root,
-:root[data-theme="hacker"] {
+:root[data-theme="Favorite"] {
   --bg:        #000000;
   --surface:   #050505;
   --surface-2: #0a0a0a;
@@ -163,7 +163,7 @@ body::before {
   box-shadow: 0 0 10px var(--glow);
   animation: live 2s ease-in-out infinite;
 }
-[data-theme="hacker"] .brand .blk { box-shadow: none; }
+[data-theme="favorite"] .brand .blk { box-shadow: none; }
 @keyframes live { 50% { opacity: 0.5; } }
 .brand .accent { color: var(--accent); }
 
@@ -181,9 +181,9 @@ body::before {
   background: color-mix(in oklab, var(--accent) 8%, transparent);
   outline: none;
 }
-[data-theme="hacker"] .nav-links a:hover,
-[data-theme="hacker"] .nav-links a:focus-visible,
-[data-theme="hacker"] .nav-links a[aria-current="page"] {
+[data-theme="favorite"] .nav-links a:hover,
+[data-theme="favorite"] .nav-links a:focus-visible,
+[data-theme="favorite"] .nav-links a[aria-current="page"] {
   background: transparent;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -204,8 +204,8 @@ body::before {
   background: color-mix(in oklab, var(--accent) 8%, transparent);
   outline: none;
 }
-[data-theme="hacker"] .theme-btn:hover,
-[data-theme="hacker"] .theme-btn:focus-visible { background: transparent; }
+[data-theme="favorite"] .theme-btn:hover,
+[data-theme="favorite"] .theme-btn:focus-visible { background: transparent; }
 .theme-btn .dot {
   width: 7px; height: 7px; border-radius: 50%;
   background: var(--accent);
@@ -353,7 +353,7 @@ h1.hero {
   width: 6px; height: 6px; border-radius: 50%;
   background: var(--accent);
 }
-[data-theme="hacker"] .badge { border-color: var(--border-2); }
+[data-theme="favorite"] .badge { border-color: var(--border-2); }
 
 .links { display: flex; gap: 10px; margin: 4px 0 0; }
 .links a {
@@ -369,8 +369,8 @@ h1.hero {
   background: color-mix(in oklab, var(--accent) 8%, transparent);
   outline: none;
 }
-[data-theme="hacker"] .links a:hover,
-[data-theme="hacker"] .links a:focus-visible {
+[data-theme="favorite"] .links a:hover,
+[data-theme="favorite"] .links a:focus-visible {
   background: transparent;
   border-color: var(--border-2);
 }
@@ -419,7 +419,7 @@ h1.hero {
 .prose em { color: var(--text); }
 .prose a { color: var(--accent); border-bottom: 1px dashed var(--accent); }
 .prose a:hover { background: color-mix(in oklab, var(--accent) 10%, transparent); }
-[data-theme="hacker"] .prose a:hover { background: transparent; }
+[data-theme="favorite"] .prose a:hover { background: transparent; }
 .prose ul, .prose ol { margin: 0.9em 0 0.9em 1.5em; color: var(--muted); }
 .prose li { margin: 0.3em 0; }
 .prose blockquote {
@@ -427,7 +427,7 @@ h1.hero {
   border-left: 2px solid var(--accent);
   color: var(--muted); background: color-mix(in oklab, var(--accent) 4%, transparent);
 }
-[data-theme="hacker"] .prose blockquote { background: transparent; }
+[data-theme="favorite"] .prose blockquote { background: transparent; }
 .prose hr { border: 0; border-top: 1px dashed var(--border-2); margin: 2em 0; }
 .prose code {
   font-family: var(--mono); font-size: 0.92em;
