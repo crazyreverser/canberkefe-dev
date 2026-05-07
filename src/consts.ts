@@ -10,8 +10,9 @@ export const AUTHOR = 'canberkefe';
 export const CLOUDFLARE_ANALYTICS_TOKEN = '';
 
 export const SOCIAL = {
-  github: 'https://github.com/canberkefe',
-  twitter: 'https://x.com/canberkefe',
+  github: 'https://github.com/crazyreverser',
+  twitter: 'https://x.com/canberkefe_',
+  linkedin: 'https://www.linkedin.com/in/canberkefe/',
   email: 'mailto:contact@canberkefe.dev',
   rss: '/rss.xml',
 };
