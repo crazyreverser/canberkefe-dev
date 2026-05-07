@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="about" description="who, what, why.">
+  <div class="page-stage">
+    <div class="page-title-block">
+      <div class="page-kicker">~/about</div>
+      <h1 class="page-title">about</h1>
+      <p class="page-subtitle">who, what, why.</p>
+    </div>
+
+    <article class="prose">
+      <p>
+        I'm <strong>canberkefe</strong>. This site is where I keep public research notes,
+        lab setups, methodology, and learning progress.
+      </p>
+
+      <h2>focus</h2>
+      <p>
+        Vulnerability research, reverse engineering, firmware analysis. Currently
+        digging into FortiGate VM research, boot/init flow analysis, and reproducible
+        security research workflows.
+      </p>
+
+      <h2>now</h2>
+      <ul>
+        <li>FortiGate VM internals — boot flow, init scripts, kernel module surface</li>
+        <li>Building a reproducible lab for firmware unpacking + emulation</li>
+        <li>Working through CTFs (TryHackMe, HackTheBox) and writing them up</li>
+      </ul>
+
+      <h2>contact</h2>
+      <p>
+        Email: <a href="mailto:contact@canberkefe.dev">contact@canberkefe.dev</a><br />
+        PGP: <a href="/pgp.txt">/pgp.txt</a> — please encrypt anything sensitive.<br />
+        GitHub: <a href="https://github.com/canberkefe">@canberkefe</a>
+      </p>
+
+      <blockquote>
+        opinions my own. nothing on this site should be construed as advice or
+        authorization to test systems you don't own.
+      </blockquote>
+    </article>
+  </div>
+</Base>

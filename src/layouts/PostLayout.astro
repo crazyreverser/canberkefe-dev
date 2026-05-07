@@ -1,0 +1,49 @@
+---
+import Base from './Base.astro';
+import ReadingProgress from '../components/ReadingProgress.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  body?: string;
+}
+const { title, description, pubDate, updatedDate, tags = [], body = '' } = Astro.props;
+const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, '.');
+const wordCount = body ? body.split(/\s+/).filter(Boolean).length : 0;
+const readingTime = Math.max(1, Math.round(wordCount / 220));
+---
+<Base
+  title={title}
+  description={description}
+  type="article"
+  pubDate={pubDate}
+  updatedDate={updatedDate}
+  tags={tags}
+>
+  <ReadingProgress />
+  <div class="page-stage">
+    <header class="post-header">
+      <div class="post-meta">
+        <span><span class="accent">date</span> {fmt(pubDate)}</span>
+        {updatedDate && <span>· <span class="accent">updated</span> {fmt(updatedDate)}</span>}
+        {wordCount > 0 && <span>· <span class="accent">read</span> {readingTime} min</span>}
+      </div>
+      <h1 class="post-title">{title}</h1>
+      <p class="post-desc">{description}</p>
+      {tags.length > 0 && (
+        <div class="post-tags">
+          {tags.map((t) => <a class="tag" href={`/tags/${t}/`}>{t}</a>)}
+        </div>
+      )}
+    </header>
+
+    <article class="prose">
+      <slot />
+    </article>
+
+    <a class="back-link" href="/blog">← all posts</a>
+  </div>
+</Base>

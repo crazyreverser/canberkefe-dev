@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 160" font-family="ui-monospace, Menlo, monospace" font-size="13">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#229e22"/>
+    </marker>
+    <style>
+      .b { fill: #050505; stroke: #229e22; stroke-width: 1.2; }
+      .t { fill: #c0c4c0; }
+      .a { fill: #229e22; font-weight: 700; }
+      .l { stroke: #229e22; stroke-width: 1.2; fill: none; }
+      .d { fill: #5a5a5a; font-size: 11px; }
+    </style>
+  </defs>
+  <rect width="880" height="160" fill="#000"/>
+
+  <!-- 6 stages -->
+  <g>
+    <rect class="b" x="20"  y="50" width="120" height="60" rx="4"/>
+    <text class="a" x="80"  y="74"  text-anchor="middle">[01] recon</text>
+    <text class="t" x="80"  y="94"  text-anchor="middle">nmap</text>
+
+    <rect class="b" x="160" y="50" width="120" height="60" rx="4"/>
+    <text class="a" x="220" y="74"  text-anchor="middle">[02] web</text>
+    <text class="t" x="220" y="94"  text-anchor="middle">gobuster</text>
+
+    <rect class="b" x="300" y="50" width="120" height="60" rx="4"/>
+    <text class="a" x="360" y="74"  text-anchor="middle">[03] auth</text>
+    <text class="t" x="360" y="94"  text-anchor="middle">login.php</text>
+
+    <rect class="b" x="440" y="50" width="120" height="60" rx="4"/>
+    <text class="a" x="500" y="74"  text-anchor="middle">[04] inject</text>
+    <text class="t" x="500" y="94"  text-anchor="middle">portal.php</text>
+
+    <rect class="b" x="580" y="50" width="120" height="60" rx="4"/>
+    <text class="a" x="640" y="74"  text-anchor="middle">[05] privesc</text>
+    <text class="t" x="640" y="94"  text-anchor="middle">sudo -l</text>
+
+    <rect class="b" x="720" y="50" width="120" height="60" rx="4" stroke-width="2"/>
+    <text class="a" x="780" y="74"  text-anchor="middle">[06] root</text>
+    <text class="t" x="780" y="94"  text-anchor="middle">3 flags</text>
+  </g>
+
+  <!-- arrows -->
+  <line class="l" x1="142" y1="80" x2="158" y2="80" marker-end="url(#arr)"/>
+  <line class="l" x1="282" y1="80" x2="298" y2="80" marker-end="url(#arr)"/>
+  <line class="l" x1="422" y1="80" x2="438" y2="80" marker-end="url(#arr)"/>
+  <line class="l" x1="562" y1="80" x2="578" y2="80" marker-end="url(#arr)"/>
+  <line class="l" x1="702" y1="80" x2="718" y2="80" marker-end="url(#arr)"/>
+
+  <text class="d" x="20" y="32">$ kill_chain --target pickle-rick.thm</text>
+  <text class="d" x="20" y="148">elapsed: ~25 min · difficulty: easy · category: web/linux</text>
+</svg>

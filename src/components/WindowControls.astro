@@ -1,0 +1,19 @@
+---
+// Linux/GNOME-style window controls (image #6):
+//   search + kebab menu = visible only on titlebar hover
+//   minimize, maximize  = always-visible muted gray dots
+//   close               = always-visible accent (blue, or green in hacker theme)
+---
+<div class="wc" aria-hidden="true">
+  <button class="search" tabindex="-1" aria-label="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+  <button class="menu" tabindex="-1" aria-label="menu">
+    <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>
+  </button>
+  <button class="min" tabindex="-1" aria-label="minimize"></button>
+  <button class="max" tabindex="-1" aria-label="maximize"></button>
+  <button class="close" tabindex="-1" aria-label="close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+</div>

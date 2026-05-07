@@ -1,0 +1,17 @@
+---
+import WindowControls from './WindowControls.astro';
+interface Props {
+  title?: string;
+  wide?: boolean;
+}
+const { title = '~ / canberkefe.dev — zsh', wide = false } = Astro.props;
+---
+<article class={`terminal${wide ? ' wide' : ''}`} aria-label="terminal window">
+  <header class="titlebar">
+    <span class="titlebar-text">{title}</span>
+    <WindowControls />
+  </header>
+  <div class="body-pane">
+    <slot />
+  </div>
+</article>

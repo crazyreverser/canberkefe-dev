@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block obvious scrapers if you want — keep crawlers free
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://canberkefe.dev/sitemap-index.xml

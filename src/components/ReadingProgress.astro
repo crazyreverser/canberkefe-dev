@@ -1,0 +1,29 @@
+---
+// thin progress bar fixed at the top, fills as user scrolls through .prose
+---
+<div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+
+<script is:inline>
+  (function () {
+    const bar = document.getElementById('reading-progress');
+    if (!bar) return;
+    const target = document.querySelector('article.prose');
+    if (!target) return;
+    let raf = 0;
+    function update() {
+      const r = target.getBoundingClientRect();
+      const top = r.top + window.scrollY;
+      const h = target.offsetHeight;
+      const scrolled = window.scrollY + window.innerHeight - top;
+      const pct = Math.max(0, Math.min(100, (scrolled / h) * 100));
+      bar.style.width = pct + '%';
+    }
+    function onScroll() {
+      if (raf) return;
+      raf = requestAnimationFrame(() => { raf = 0; update(); });
+    }
+    document.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>

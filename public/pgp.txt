@@ -1,0 +1,22 @@
+canberkefe — PGP public key
+Email:       contact@canberkefe.dev
+Key ID:      0x006E0A32393BBEA4
+Fingerprint: 79FB6FF6FDB353ABB5E9AD05006E0A32393BBEA4
+Created:     2026-05-07   Expires: 2028-05-06
+
+Verify the fingerprint before sending sensitive material.
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEafwixxYJKwYBBAHaRw8BAQdAssVSas3JKH3N3Z1FCunS2x0j5ukObNxspEBq
+k+nyYha0NGNhbmJlcmtlZmUgKGNhbmJlcmtlZmUuZGV2KSA8Y29udGFjdEBjYW5i
+ZXJrZWZlLmRldj6IlgQTFggAPhYhBHn7b/b9s1OrtemtBQBuCjI5O76kBQJp/CLH
+AhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEABuCjI5O76kxNsA
+/0NTS2CtFG3TFs5g1kcBQWy6GuO5xkwtvEHJTLI2KsSoAQDrBlerSvrchn8pStHe
++qDKGD92doF7XBU+xvsNdTUmCbg4BGn8IscSCisGAQQBl1UBBQEBB0ADncuOAFAq
+/eCZSBuIlABQ3PHTrodifVc41L+Y/LZgMwMBCAeIfgQYFggAJhYhBHn7b/b9s1Or
+temtBQBuCjI5O76kBQJp/CLHAhsMBQkDwmcAAAoJEABuCjI5O76ke6IA/1zpILgF
+5w9ZCQiJVtUSoYjs1UIlAl/pPnaMvaFyui1tAPsFGXXhoTwXLaJfbWHVZRgwV/g4
+s20m77u6a9a58hoPDw==
+=T0FP
+-----END PGP PUBLIC KEY BLOCK-----

@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, '.');
+---
+<Base title="blog" description="Research notes, CTF writeups, lab logs.">
+  <div class="page-stage">
+    <div class="page-title-block">
+      <div class="page-kicker">~/blog</div>
+      <h1 class="page-title">writing</h1>
+      <p class="page-subtitle">research notes · ctf writeups · lab logs · {posts.length} post{posts.length === 1 ? '' : 's'}</p>
+      <div class="page-actions">
+        <a href="/tags">browse tags →</a>
+        <a href="/rss.xml">rss</a>
+      </div>
+    </div>
+
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}/`}>
+            <div class="row">
+              <span class="date">{fmt(post.data.pubDate)}</span>
+              <div>
+                <h2>{post.data.title}</h2>
+                <p class="desc">{post.data.description}</p>
+                {post.data.tags.length > 0 && (
+                  <div class="post-tags" style="margin-top:10px;">
+                    {post.data.tags.map((t) => <span class="tag">{t}</span>)}
+                  </div>
+                )}
+              </div>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Base>

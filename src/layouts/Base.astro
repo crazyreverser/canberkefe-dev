@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  SITE_URL,
+  CLOUDFLARE_ANALYTICS_TOKEN,
+  AUTHOR,
+} from '../consts';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  type?: 'website' | 'article';
+  pubDate?: Date;
+  updatedDate?: Date;
+  tags?: string[];
+}
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  ogImage = '/og-default.svg',
+  type = 'website',
+  pubDate,
+  updatedDate,
+  tags = [],
+} = Astro.props;
+
+const fullTitle = title === SITE_TITLE ? title : `${title} — ${SITE_TITLE}`;
+const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
+const ogImageURL = new URL(ogImage, SITE_URL).toString();
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_TITLE,
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  author: { '@type': 'Person', name: AUTHOR, url: SITE_URL },
+};
+
+const articleSchema = type === 'article' && pubDate ? {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  url: canonical,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: { '@type': 'Person', name: AUTHOR, url: SITE_URL },
+  publisher: { '@type': 'Person', name: AUTHOR, url: SITE_URL },
+  keywords: tags.join(', '),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  image: ogImageURL,
+} : null;
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="hacker">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content={AUTHOR} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  {tags.length > 0 && <meta name="keywords" content={tags.join(', ')} />}
+
+  <meta property="og:site_name" content={SITE_TITLE} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:type" content={type} />
+  <meta property="og:image" content={ogImageURL} />
+  <meta property="og:image:alt" content={title} />
+  {pubDate    && <meta property="article:published_time" content={pubDate.toISOString()} />}
+  {updatedDate && <meta property="article:modified_time"  content={updatedDate.toISOString()} />}
+  {tags.map((t) => <meta property="article:tag" content={t} />)}
+  <meta property="article:author" content={AUTHOR} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageURL} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  {articleSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  )}
+
+  <script is:inline>
+    (function () {
+      try {
+        var t = localStorage.getItem('cb_theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
+  {CLOUDFLARE_ANALYTICS_TOKEN && (
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={`{"token": "${CLOUDFLARE_ANALYTICS_TOKEN}"}`}
+    />
+  )}
+</head>
+<body>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <footer class="site-foot">
+    <span>$ uptime · canberkefe.dev · </span>
+    <a href="/pgp.txt">pgp</a>
+  </footer>
+</body>
+</html>

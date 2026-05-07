@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" font-family="ui-monospace, Menlo, monospace" font-size="13">
+  <defs>
+    <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#229e22"/>
+    </marker>
+    <style>
+      .b   { fill: #050505; stroke: #229e22; stroke-width: 1.2; }
+      .b2  { fill: #050505; stroke: #1a7a1a; stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .t   { fill: #c0c4c0; }
+      .a   { fill: #229e22; font-weight: 700; }
+      .d   { fill: #5a5a5a; font-size: 11px; }
+      .lbl { fill: #5fafd7; font-size: 11px; }
+      .l   { stroke: #229e22; stroke-width: 1.2; fill: none; }
+    </style>
+  </defs>
+  <rect width="720" height="280" fill="#000"/>
+
+  <text class="d" x="20" y="28">$ id; sudo -l; cat /root/3rd.txt</text>
+
+  <!-- tier 1: anonymous -->
+  <rect class="b2" x="40" y="60" width="160" height="70" rx="6"/>
+  <text class="a" x="120" y="86" text-anchor="middle">anonymous</text>
+  <text class="t" x="120" y="106" text-anchor="middle">curl /</text>
+  <text class="lbl" x="120" y="122" text-anchor="middle">no creds</text>
+
+  <!-- arrow -->
+  <line class="l" x1="200" y1="95" x2="270" y2="95" marker-end="url(#arr2)"/>
+  <text class="lbl" x="235" y="86" text-anchor="middle">robots.txt</text>
+
+  <!-- tier 2: www-data -->
+  <rect class="b" x="270" y="60" width="160" height="70" rx="6"/>
+  <text class="a" x="350" y="86" text-anchor="middle">www-data</text>
+  <text class="t" x="350" y="106" text-anchor="middle">portal.php</text>
+  <text class="lbl" x="350" y="122" text-anchor="middle">cmd injection</text>
+
+  <line class="l" x1="430" y1="95" x2="500" y2="95" marker-end="url(#arr2)"/>
+  <text class="lbl" x="465" y="86" text-anchor="middle">sudo -l</text>
+
+  <!-- tier 3: root -->
+  <rect class="b" x="500" y="60" width="180" height="70" rx="6" stroke-width="2"/>
+  <text class="a" x="590" y="86" text-anchor="middle">root</text>
+  <text class="t" x="590" y="106" text-anchor="middle">(ALL) NOPASSWD</text>
+  <text class="lbl" x="590" y="122" text-anchor="middle">free shell</text>
+
+  <!-- footer notes -->
+  <g transform="translate(40 180)">
+    <text class="a" x="0" y="0">→</text>
+    <text class="t" x="20" y="0">flag 1: portal.php · less Sup3rS3cretPickl3Ingred.txt</text>
+
+    <text class="a" x="0" y="22">→</text>
+    <text class="t" x="20" y="22">flag 2: /home/rick/"second ingredients" · xargs to dodge spaces</text>
+
+    <text class="a" x="0" y="44">→</text>
+    <text class="t" x="20" y="44">flag 3: sudo less /root/3rd.txt</text>
+  </g>
+</svg>
