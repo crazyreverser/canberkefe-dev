@@ -7,12 +7,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, '.');
 ---
-<Base title="blog" description="Research notes, CTF writeups, lab logs.">
+<Base title="blog" description="Research notes, firmware analysis, reverse engineering, lab logs.">
   <div class="page-stage">
     <div class="page-title-block">
       <div class="page-kicker">~/blog</div>
       <h1 class="page-title">writing</h1>
-      <p class="page-subtitle">research notes · ctf writeups · lab logs · {posts.length} post{posts.length === 1 ? '' : 's'}</p>
+      <p class="page-subtitle">research notes · firmware analysis · reverse engineering · lab logs · cert prep · {posts.length} post{posts.length === 1 ? '' : 's'}</p>
       <div class="page-actions">
         <a href="/tags">browse tags →</a>
         <a href="/rss.xml">rss</a>

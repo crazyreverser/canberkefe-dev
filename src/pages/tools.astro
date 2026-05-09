@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="tools" description="Templates, scripts, and research utilities.">
+  <div class="page-stage">
+    <div class="page-title-block">
+      <div class="page-kicker">~/tools</div>
+      <h1 class="page-title">tools</h1>
+      <p class="page-subtitle">templates, scripts, and research utilities</p>
+    </div>
+
+    <ul class="tool-list">
+      <li class="tool-item">
+        <div class="tool-header">
+          <h2>firmware-research-notes-template</h2>
+          <span class="badge">PLANNED</span>
+        </div>
+        <p class="tool-desc">A structured note-taking template for firmware analysis, artifact tracking, binary triage, and reproducible vulnerability research workflows.</p>
+      </li>
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .tool-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tool-item {
+    border-top: 1px dashed var(--border-2);
+    padding: 22px 0;
+  }
+  .tool-item:last-child {
+    border-bottom: 1px dashed var(--border-2);
+  }
+  .tool-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .tool-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text);
+  }
+  .tool-desc {
+    color: var(--muted);
+    font-size: 13.5px;
+    margin-top: 8px;
+  }
+</style>

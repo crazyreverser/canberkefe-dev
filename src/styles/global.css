@@ -231,7 +231,7 @@ main {
 
 /* ─── terminal frame (landing only) ─────────────────────────────── */
 .terminal {
-  width: 100%; max-width: min(660px, 90vw);
+  width: 100%; max-width: min(720px, 90vw);
   background: var(--surface);
   border: 1px solid var(--border-2);
   border-radius: var(--radius);
@@ -625,7 +625,7 @@ a.tag:hover { color: var(--accent); border-color: var(--accent); }
     --post-max: 960px;
   }
   body { font-size: 15px; }
-  .terminal { max-width: min(720px, 50vw); }
+  .terminal { max-width: min(760px, 50vw); }
   h1.hero { font-size: 40px; }
   .body-pane { padding: 32px 40px 28px; }
   .titlebar { padding: 8px 14px 8px 16px; }
@@ -643,7 +643,7 @@ a.tag:hover { color: var(--accent); border-color: var(--accent); }
     --post-max: 1120px;
   }
   body { font-size: 17px; }
-  .terminal { max-width: min(840px, 40vw); }
+  .terminal { max-width: min(880px, 40vw); }
   h1.hero { font-size: 48px; }
   .body-pane { padding: 40px 48px 36px; }
   .titlebar { padding: 10px 16px 10px 20px; font-size: 13px; }
