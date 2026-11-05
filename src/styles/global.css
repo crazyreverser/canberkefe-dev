@@ -581,6 +581,24 @@ a.tag:hover { color: var(--accent); border-color: var(--accent); }
 }
 .site-foot a { color: var(--muted); border-bottom: 1px dotted var(--border-2); }
 .site-foot a:hover { color: var(--accent); border-color: var(--accent); }
+.site-foot a.site-foot-cta {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-left: 10px; padding: 3px 8px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  line-height: 1.6;
+}
+.site-foot a.site-foot-cta:hover,
+.site-foot a.site-foot-cta:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 8%, transparent);
+}
+.site-foot a.site-foot-cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 
 /* ─── small mobile ──────────────────────────────────────────────── */
 @media (max-width: 540px) {
