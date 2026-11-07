@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "dev:aislop": "astro dev --host 127.0.0.1 --port 4310",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

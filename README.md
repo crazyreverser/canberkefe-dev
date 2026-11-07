@@ -13,6 +13,17 @@ npm run build       # outputs to dist/
 npm run preview     # serve dist/ locally
 ```
 
+## Local application catalogue
+
+`npm run dev:aislop` opens the catalogue at `http://127.0.0.1:4310/aislop/`.
+The local-only `.env.local` sets `PUBLIC_HPQUIZ_URL=http://127.0.0.1:4320`
+and `PUBLIC_ITALIAN_URL=http://127.0.0.1:5173`. Without those values, project
+links use their production subdomains. Development ports are strict to prevent
+links silently pointing at the wrong application. The catalogue supports the
+three site themes, keyboard focus, touch and reduced motion. The Italian app is
+listed first with its own logo. HP Quiz links to an incoming page; its application,
+artwork and questions are maintained separately and are not part of this site.
+
 ## Adding a blog post
 
 Drop a Markdown (or `.mdx`) file into `src/content/blog/`:

@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const projects = [
+  {
+    id: '01', key: 'italian', name: 'Laşatemikantare', category: 'DİL · ÖĞRENME',
+    href: import.meta.env.PUBLIC_ITALIAN_URL || 'https://learnitalianwithme.canberkefe.dev/',
+    label: 'Biraz İtalyanca, her gün.',
+    description: 'Türkçe anlatımlı kısa dersler, sesli örnekler ve günlük alıştırmalarla İtalyanca öğren. Sıfırdan A1’e, kendi hızında.',
+    details: ['48 ders', 'Sesli pratik', 'A1'],
+    action: 'Uygulamayı aç',
+  },
+  {
+    id: '02', key: 'potter', name: 'HP Quiz', category: 'SİNEMA · YAKINDA',
+    href: import.meta.env.PUBLIC_HPQUIZ_URL || 'https://hpquiz.canberkefe.dev/',
+    label: 'Yeni bir dünya hazırlanıyor.',
+    description: 'Harry Potter filmleri için ayrıntılı quizler ve bir Seçmen Şapka deneyimi üzerinde çalışıyorum. Henüz yayında değil.',
+    details: ['incoming', 'Hazırlanıyor'],
+    action: 'Yakında',
+  },
+];
+---
+<Base lang="tr" title="aislop" description="AI ile yaptığım uygulamalar. İtalyanca öğrenmek için Laşatemikantare ve hazırlık aşamasındaki yeni projeler.">
+  <div class="page-stage catalogue">
+    <div class="catalogue-heading">
+      <p class="page-kicker">~/aislop</p>
+      <h1>AI ile yaptığım<br /><span>uygulamalar.</span></h1>
+      <p class="catalogue-intro">Kullandığım araçlar, denediğim fikirler.</p>
+      <div class="catalogue-index"><span>UYGULAMA KOLEKSİYONU</span><span>001 — 002</span></div>
+    </div>
+
+    <div class="project-grid">
+      {projects.map(project => (
+        <a class={`project-card project-${project.key}`} href={project.href} aria-label={`${project.name}: ${project.label}`}>
+          <div class="project-top"><span>{project.id} / {project.category}</span><span class="project-dot" aria-hidden="true"></span></div>
+          <div class="project-window">
+            <div class="project-front" aria-hidden="true">
+              {project.key === 'italian' ? (
+                <div class="italian-mark"><img class="italian-logo" src="/projects/lasatemikantare.svg" width="112" height="112" alt="" /></div>
+              ) : (
+                <div class="incoming-mark"><span class="incoming-label">incoming<span class="incoming-cursor">_</span></span><span class="incoming-small">HAZIRLANIYOR</span></div>
+              )}
+            </div>
+            <div class="project-back"><p class="project-lead">{project.label}</p><p class="project-description">{project.description}</p><ul class="project-details">{project.details.map(detail => <li>{detail}</li>)}</ul></div>
+          </div>
+          <div class="project-bottom"><h2>{project.name}</h2><span class="project-arrow" aria-hidden="true">↗</span></div>
+          <span class="project-open">{project.action} <span aria-hidden="true">→</span></span>
+        </a>
+      ))}
+    </div>
+    <p class="catalogue-note"><span aria-hidden="true">+</span> Yeni uygulamalar burada yerini alacak.</p>
+  </div>
+</Base>
+
+<style>
+  .catalogue { max-width: 1000px; padding-top: 70px; }
+  .catalogue-heading { margin-bottom: 26px; }
+  .catalogue h1 { color: var(--text); font-size: clamp(28px, 4.5vw, 46px); line-height: 1.2; letter-spacing: -2px; font-weight: 500; }
+  .catalogue h1 span { color: var(--muted); }
+  .catalogue-intro { color: var(--muted); font-size: 13px; line-height: 1.9; margin-top: 24px; }
+  .catalogue-index { display:flex; justify-content:space-between; gap:15px; margin-top:48px; padding-bottom:14px; border-bottom:1px solid var(--border-2); font-size:10px; letter-spacing:1.5px; color:var(--muted); }
+  .project-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+  .project-card { position:relative; display:block; min-width:0; border:1px solid var(--border-2); border-radius:10px; padding:24px; background:var(--surface); overflow:hidden; transition:transform 240ms ease,border-color 240ms ease,box-shadow 240ms ease; }
+  .project-card::before { content:''; position:absolute; inset:0; pointer-events:none; opacity:.65; background:radial-gradient(ellipse at 50% 40%, color-mix(in oklab,var(--project-accent) 7%,transparent),transparent 70%); }
+  .project-potter { --project-accent:#b89c64; }
+  .project-italian { --project-accent:#6ca88e; }
+  .project-top { position:relative; display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:9px; letter-spacing:1px; color:var(--muted); }
+  .project-dot { height:5px; width:5px; border-radius:50%; background:var(--project-accent); box-shadow:0 0 9px color-mix(in oklab,var(--project-accent) 40%,transparent); }
+  .project-window { position:relative; height:260px; display:grid; align-items:center; }
+  .project-front { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transition:opacity 260ms ease,transform 360ms ease; }
+  .project-back { position:relative; opacity:0; transform:translateY(12px); transition:opacity 260ms ease,transform 360ms ease; }
+  .project-lead { color:var(--text); font-size:17px; line-height:1.5; letter-spacing:-.5px; margin-bottom:14px; }
+  .project-description { color:var(--muted); font-size:12px; line-height:1.9; }
+  .project-details { list-style:none; display:flex; flex-wrap:wrap; gap:6px; margin-top:20px; }
+  .project-details li { border:1px solid var(--border-2); border-radius:3px; padding:3px 7px; font-size:9px; color:var(--muted); }
+  .project-bottom { position:relative; display:flex; align-items:center; justify-content:space-between; gap:8px; padding-top:20px; border-top:1px solid var(--border-2); }
+  .project-bottom h2 { font-size:16px; line-height:1.3; letter-spacing:-.5px; font-weight:500; color:var(--text); }
+  .project-arrow { font-size:23px; line-height:1; color:var(--project-accent); transition:transform 240ms ease; }
+  .project-open { position:relative; display:flex; justify-content:space-between; font-size:10px; color:var(--muted); margin-top:11px; }
+  .italian-mark,.incoming-mark { width:220px; height:180px; position:relative; display:flex; align-items:center; justify-content:center; }
+  .italian-logo { display:block; width:112px; height:112px; }
+  .incoming-mark { flex-direction:column; gap:15px; color:var(--muted); }
+  .incoming-label { font-family:var(--mono); font-size:30px; letter-spacing:-1px; }
+  .incoming-cursor { color:var(--accent); }
+  .incoming-small { font-size:8px; letter-spacing:3px; color:var(--muted); }
+  .project-card:hover,.project-card:focus-visible { border-color:var(--project-accent); transform:translateY(-4px); box-shadow:0 15px 35px #00000014; }
+  .project-card:focus-visible { outline:2px solid var(--project-accent); outline-offset:5px; }
+  .project-card:hover .project-front,.project-card:focus-visible .project-front { opacity:0; transform:translateY(-10px) scale(.96); }
+  .project-card:hover .project-back,.project-card:focus-visible .project-back { opacity:1; transform:translateY(0); }
+  .project-card:hover .project-arrow,.project-card:focus-visible .project-arrow { transform:translate(3px,-3px); }
+  .catalogue-note { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:10px; margin-top:25px; }
+  .catalogue-note span { color:var(--accent); font-size:16px; }
+  @media(max-width:640px) { .catalogue { padding-top:42px; } .catalogue h1 { letter-spacing:-1px; } .project-grid { grid-template-columns:1fr; } .project-window { height:235px; } .catalogue-index { margin-top:34px; } .project-card { padding:22px; } }
+  @media(hover:none) { .project-window { display:block; height:auto; padding:20px 0 24px; } .project-front { position:relative; height:170px; } .incoming-mark,.italian-mark { transform:scale(.8); } .project-back { opacity:1; transform:none; margin-top:15px; } .project-card:hover .project-front,.project-card:focus-visible .project-front { opacity:1; transform:none; } .project-lead { font-size:15px; margin-bottom:9px; } }
+  @media(prefers-reduced-motion:reduce) { .project-card,.project-front,.project-back,.project-arrow { transition:none; } .project-card:hover,.project-card:focus-visible { transform:none; } }
+</style>

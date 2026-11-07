@@ -168,6 +168,8 @@ body::before {
 .brand .accent { color: var(--accent); }
 
 .nav-links { display: flex; align-items: center; gap: 4px; }
+.site-head-inner { flex-wrap: wrap; }
+.nav-links { flex-wrap: wrap; }
 .nav-links a {
   padding: 6px 10px; border-radius: var(--radius-sm);
   color: var(--muted); font-size: 13px;

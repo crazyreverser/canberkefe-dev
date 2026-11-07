@@ -11,6 +11,7 @@ import {
 } from '../consts';
 
 interface Props {
+  lang?: 'en' | 'tr';
   title?: string;
   description?: string;
   ogImage?: string;
@@ -20,6 +21,7 @@ interface Props {
   tags?: string[];
 }
 const {
+  lang = 'en',
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
   ogImage = '/og-default.png',
@@ -58,7 +60,7 @@ const articleSchema = type === 'article' && pubDate ? {
 } : null;
 ---
 <!DOCTYPE html>
-<html lang="en" data-theme="favorite">
+<html lang={lang} data-theme="favorite">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -81,7 +83,7 @@ const articleSchema = type === 'article' && pubDate ? {
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
   <meta property="og:type" content={type} />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_US'} />
   <meta property="og:image" content={ogImageURL} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -130,9 +132,6 @@ const articleSchema = type === 'article' && pubDate ? {
   <footer class="site-foot">
     <span>$ uptime · canberkefe.dev · </span>
     <a href="/tags">tags</a> · <a href="/pgp.txt">pgp</a>
-    <a class="site-foot-cta" href="https://learnitalianwithme.canberkefe.dev/">
-      learn Italian with me <span aria-hidden="true">↗</span>
-    </a>
   </footer>
 </body>
 </html>
