@@ -39,7 +39,9 @@ const projects = [
               {project.key === 'italian' ? (
                 <img class="italian-logo" src={italianLogo} width="112" height="112" alt="" />
               ) : (
-                <span class="hp-logo"></span>
+                <svg class="hp-logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                  <path d="M37 6 18 35h13l-5 23 21-32H33z" fill="currentColor" />
+                </svg>
               )}
             </div>
             <div class="project-back">
@@ -95,9 +97,7 @@ const projects = [
   }
   .italian-logo, .hp-logo { display: block; width: 112px; height: 112px; }
   .hp-logo {
-    background: var(--accent);
-    -webkit-mask: url('/projects/hpquiz.svg') center / contain no-repeat;
-    mask: url('/projects/hpquiz.svg') center / contain no-repeat;
+    color: var(--accent);
   }
   .project-back {
     flex-direction: column;
