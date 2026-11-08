@@ -29,12 +29,11 @@ const catalogueSchema = {
   itemListElement: projects.map((project, index) => ({
     '@type': 'ListItem', position: index + 1,
     item: {
-      '@type': 'SoftwareApplication',
+      '@type': 'CreativeWork',
       name: project.name,
       url: project.key === 'hp' ? 'https://hpquiz.canberkefe.dev/' : 'https://learnitalianwithme.canberkefe.dev/',
       description: project.description,
-      applicationCategory: project.key === 'hp' ? 'GameApplication' : 'EducationalApplication',
-      operatingSystem: 'Web browser',
+      genre: project.key === 'hp' ? 'Interactive film quiz' : 'Language learning',
       creator: { '@id': 'https://canberkefe.dev/#person' },
     },
   })),
