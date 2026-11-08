@@ -10,9 +10,9 @@ const isActive = (p: string) => path === p || (p !== '/' && path.startsWith(p));
       <span>Canberk Efe<span class="accent">.dev</span></span>
     </a>
     <nav class="nav-links" aria-label="primary">
-      <a href="/about" aria-current={isActive('/about') ? 'page' : undefined}>about</a>
-      <a href="/blog"  aria-current={isActive('/blog')  ? 'page' : undefined}>blog</a>
-      <a href="/tags"  aria-current={isActive('/tags')  ? 'page' : undefined}>tags</a>
+      <a href="/about/" aria-current={isActive('/about') ? 'page' : undefined}>about</a>
+      <a href="/blog/"  aria-current={isActive('/blog')  ? 'page' : undefined}>blog</a>
+      <a href="/tags/"  aria-current={isActive('/tags')  ? 'page' : undefined}>tags</a>
       <a href="/aislop/" aria-current={isActive('/aislop') ? 'page' : undefined}>aislop</a>
       <ThemeToggle />
     </nav>

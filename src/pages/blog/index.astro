@@ -7,7 +7,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, '.');
 ---
-<Base title="blog" description="Research notes, firmware analysis, reverse engineering, lab logs.">
+<Base title="Engineering Notes & Project Writeups" description="Canberk Efe’s original engineering notes, application architecture, security decisions and reproducible project writeups." pageType="CollectionPage">
   <div class="page-stage">
     <div class="page-title-block">
       <div class="page-kicker">~/blog</div>

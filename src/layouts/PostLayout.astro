@@ -27,6 +27,7 @@ const readingTime = Math.max(1, Math.round(wordCount / 220));
   <div class="page-stage">
     <header class="post-header">
       <div class="post-meta">
+        <a href="/about/" rel="author">Canberk Efe</a>
         <span><span class="accent">date</span> {fmt(pubDate)}</span>
         {updatedDate && <span>· <span class="accent">updated</span> {fmt(updatedDate)}</span>}
         {wordCount > 0 && <span>· <span class="accent">read</span> {readingTime} min</span>}
@@ -44,6 +45,6 @@ const readingTime = Math.max(1, Math.round(wordCount / 220));
       <slot />
     </article>
 
-    <a class="back-link" href="/blog">← all posts</a>
+    <a class="back-link" href="/blog/">← all posts</a>
   </div>
 </Base>

@@ -6,7 +6,8 @@ export default defineConfig({
   devToolbar: { enabled: false },
   vite: { server: { strictPort: true }, preview: { strictPort: true } },
   site: 'https://canberkefe.dev',
-  integrations: [mdx(), sitemap()],
+  trailingSlash: 'always',
+  integrations: [mdx(), sitemap({ filter: (page) => !page.endsWith('/404/') })],
   markdown: {
     shikiConfig: {
       theme: 'github-dark-dimmed',

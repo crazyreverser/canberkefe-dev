@@ -1,7 +1,7 @@
 export const SITE_TITLE = 'canberkefe.dev';
-export const SITE_TITLE_SEO = 'Canberk Efe — Vulnerability Research & Reverse Engineering';
+export const SITE_TITLE_SEO = 'Canberk Efe — Security Research & Reverse Engineering';
 export const SITE_DESCRIPTION =
-  'Vulnerability research, reverse engineering, firmware analysis. Public research notes, lab logs, and network security appliance research.';
+  'Canberk Efe’s engineering notes and projects: vulnerability research, reverse engineering, firmware analysis, HP Quiz and browser-based learning tools.';
 export const SITE_URL = 'https://canberkefe.dev';
 export const AUTHOR = 'Canberk Efe';
 

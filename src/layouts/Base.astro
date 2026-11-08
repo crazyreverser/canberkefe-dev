@@ -8,6 +8,7 @@ import {
   SITE_URL,
   CLOUDFLARE_ANALYTICS_TOKEN,
   AUTHOR,
+  SOCIAL,
 } from '../consts';
 
 interface Props {
@@ -19,6 +20,9 @@ interface Props {
   pubDate?: Date;
   updatedDate?: Date;
   tags?: string[];
+  pageType?: 'WebPage' | 'ProfilePage' | 'CollectionPage';
+  noindex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 const {
   lang = 'en',
@@ -29,6 +33,9 @@ const {
   pubDate,
   updatedDate,
   tags = [],
+  pageType = 'WebPage',
+  noindex = false,
+  structuredData = [],
 } = Astro.props;
 
 const fullTitle = title === SITE_TITLE ? SITE_TITLE_SEO : `${title} — ${SITE_TITLE}`;
@@ -36,28 +43,54 @@ const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
 const ogImageURL = new URL(ogImage, SITE_URL).toString();
 
 const websiteSchema = {
-  '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
   name: SITE_TITLE,
   url: SITE_URL,
   description: SITE_DESCRIPTION,
-  author: { '@type': 'Person', name: AUTHOR, url: SITE_URL },
+  publisher: { '@id': `${SITE_URL}/#person` },
+  inLanguage: ['en', 'tr'],
+};
+
+const personSchema = {
+  '@type': 'Person',
+  '@id': `${SITE_URL}/#person`,
+  name: AUTHOR,
+  url: `${SITE_URL}/about/`,
+  sameAs: [SOCIAL.github, SOCIAL.twitter, SOCIAL.linkedin],
+  knowsAbout: ['Vulnerability research', 'Reverse engineering', 'Firmware analysis', 'Web application development'],
+};
+
+const pageSchema = {
+  '@type': pageType,
+  '@id': `${canonical}#webpage`,
+  url: canonical,
+  name: fullTitle,
+  description,
+  inLanguage: lang,
+  isPartOf: { '@id': `${SITE_URL}/#website` },
+  ...(pageType === 'ProfilePage' ? { mainEntity: { '@id': `${SITE_URL}/#person` } } : {}),
 };
 
 const articleSchema = type === 'article' && pubDate ? {
-  '@context': 'https://schema.org',
   '@type': 'BlogPosting',
+  '@id': `${canonical}#article`,
   headline: title,
   description,
   url: canonical,
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate ?? pubDate).toISOString(),
-  author: { '@type': 'Person', name: AUTHOR, url: SITE_URL },
-  publisher: { '@type': 'Person', name: AUTHOR, url: SITE_URL },
+  author: { '@id': `${SITE_URL}/#person` },
+  publisher: { '@id': `${SITE_URL}/#person` },
+  inLanguage: lang,
   keywords: tags.join(', '),
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
   image: ogImageURL,
 } : null;
+const schemaGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [personSchema, websiteSchema, pageSchema, ...(articleSchema ? [articleSchema] : []), ...(Array.isArray(structuredData) ? structuredData : [structuredData])],
+};
 ---
 <!DOCTYPE html>
 <html lang={lang} data-theme="favorite">
@@ -75,8 +108,7 @@ const articleSchema = type === 'article' && pubDate ? {
   <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
   <link rel="sitemap" href="/sitemap-index.xml" />
 
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-  {tags.length > 0 && <meta name="keywords" content={tags.join(', ')} />}
+  <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
 
   <meta property="og:site_name" content={SITE_TITLE} />
   <meta property="og:title" content={fullTitle} />
@@ -102,10 +134,7 @@ const articleSchema = type === 'article' && pubDate ? {
   <meta name="twitter:image" content={ogImageURL} />
   <meta name="twitter:image:alt" content={title} />
 
-  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-  {articleSchema && (
-    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-  )}
+  <script type="application/ld+json" set:html={JSON.stringify(schemaGraph).replace(/</g, '\\u003c')} />
 
   <script is:inline>
     (function () {
@@ -130,7 +159,7 @@ const articleSchema = type === 'article' && pubDate ? {
     <slot />
   </main>
   <footer class="site-foot">
-    <span>$ uptime · canberkefe.dev · </span>
+    <span>$ uptime · <a href="/about/" rel="author">Canberk Efe</a> · </span>
     <a href="/tags">tags</a> · <a href="/pgp.txt">pgp</a>
   </footer>
 </body>

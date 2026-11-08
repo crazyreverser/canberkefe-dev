@@ -23,9 +23,26 @@ const projects = [
     description: 'Sekiz filmden 480 sahne sorusu ve Seçmen Şapka ile Hogwarts binanı keşfet.',
   },
 ];
+const catalogueSchema = {
+  '@type': 'ItemList',
+  name: 'Canberk Efe’nin uygulamaları',
+  itemListElement: projects.map((project, index) => ({
+    '@type': 'ListItem', position: index + 1,
+    item: {
+      '@type': 'SoftwareApplication',
+      name: project.name,
+      url: project.key === 'hp' ? 'https://hpquiz.canberkefe.dev/' : 'https://learnitalianwithme.canberkefe.dev/',
+      description: project.description,
+      applicationCategory: project.key === 'hp' ? 'GameApplication' : 'EducationalApplication',
+      operatingSystem: 'Web browser',
+      creator: { '@id': 'https://canberkefe.dev/#person' },
+    },
+  })),
+};
 ---
-<Base lang="tr" title="aislop" description="Laşatemikantare ve HP Quiz.">
+<Base lang="tr" title="aislop — Canberk Efe’nin Uygulamaları" description="Canberk Efe’nin uygulama kataloğu: 480 soruluk Harry Potter film quizi ve Seçmen Şapka; Laşatemikantare ile Türkçe anlatımlı İtalyanca A1." pageType="CollectionPage" structuredData={catalogueSchema}>
   <section class="logo-catalogue" aria-label="Uygulamalar">
+    <h1 class="sr-only">Uygulamalar</h1>
     <div class="project-grid">
       {projects.map(project => (
         <a
@@ -39,9 +56,7 @@ const projects = [
               {project.key === 'italian' ? (
                 <img class="italian-logo" src={italianLogo} width="112" height="112" alt="" />
               ) : (
-                <svg class="hp-logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-                  <path d="M37 6 18 35h13l-5 23 21-32H33z" fill="currentColor" />
-                </svg>
+                <img class="hp-logo" src="/projects/harry-potter-wordmark.png" width="600" height="219" alt="" decoding="async" />
               )}
             </div>
             <div class="project-back">
@@ -56,6 +71,7 @@ const projects = [
 </Base>
 
 <style>
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
   .logo-catalogue {
     display: grid;
     place-items: center;
@@ -97,7 +113,9 @@ const projects = [
   }
   .italian-logo, .hp-logo { display: block; width: 112px; height: 112px; }
   .hp-logo {
-    color: var(--accent);
+    width: 180px;
+    max-width: 100%;
+    object-fit: contain;
   }
   .project-back {
     flex-direction: column;
@@ -118,11 +136,13 @@ const projects = [
     .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
     .project-card { height: 220px; gap: 14px; }
     .italian-logo, .hp-logo { width: 92px; height: 92px; }
+    .hp-logo { width: 148px; }
   }
   @media (max-width: 400px) {
     .logo-catalogue { padding: 32px 16px; }
     .project-grid { gap: 14px; }
     .italian-logo, .hp-logo { width: 80px; height: 80px; }
+    .hp-logo { width: 130px; }
     .project-back { padding: 7px; }
     .project-caption { font-size: 11px; }
     .project-back p { font-size: 10px; }
