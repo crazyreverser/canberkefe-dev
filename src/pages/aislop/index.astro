@@ -1,22 +1,30 @@
 ---
 import Base from '../../layouts/Base.astro';
+// Local previews can override the approved production assets and destinations.
+const italianLogo = import.meta.env.DEV && import.meta.env.PUBLIC_ITALIAN_LOGO_URL
+  ? import.meta.env.PUBLIC_ITALIAN_LOGO_URL
+  : '/projects/lasatemikantare-elle.webp';
 
 const projects = [
   {
     key: 'italian',
     name: 'Laşatemikantare',
-    href: import.meta.env.PUBLIC_ITALIAN_URL || 'https://learnitalianwithme.canberkefe.dev/',
+    href: import.meta.env.DEV && import.meta.env.PUBLIC_ITALIAN_URL
+      ? import.meta.env.PUBLIC_ITALIAN_URL
+      : 'https://learnitalianwithme.canberkefe.dev/',
     description: 'Türkçe anlatımlı dersler, sesli örnekler ve alıştırmalarla sıfırdan İtalyanca A1’e.',
   },
   {
-    key: 'incoming',
-    name: 'incoming',
-    href: import.meta.env.PUBLIC_HPQUIZ_URL || 'https://hpquiz.canberkefe.dev/',
-    description: 'mysterious',
+    key: 'hp',
+    name: 'HP Quiz',
+    href: import.meta.env.DEV && import.meta.env.PUBLIC_HPQUIZ_URL
+      ? import.meta.env.PUBLIC_HPQUIZ_URL
+      : 'https://hpquiz.canberkefe.dev/',
+    description: 'Sekiz filmden 480 sahne sorusu ve Seçmen Şapka ile Hogwarts binanı keşfet.',
   },
 ];
 ---
-<Base lang="tr" title="aislop" description="Laşatemikantare ve incoming.">
+<Base lang="tr" title="aislop" description="Laşatemikantare ve HP Quiz.">
   <section class="logo-catalogue" aria-label="Uygulamalar">
     <div class="project-grid">
       {projects.map(project => (
@@ -29,9 +37,9 @@ const projects = [
           <div class="project-visual">
             <div class="project-front" aria-hidden="true">
               {project.key === 'italian' ? (
-                <img class="italian-logo" src="/projects/lasatemikantare.svg" width="112" height="112" alt="" />
+                <img class="italian-logo" src={italianLogo} width="112" height="112" alt="" />
               ) : (
-                <span class="incoming-logo">incoming<span>_</span></span>
+                <span class="hp-logo"></span>
               )}
             </div>
             <div class="project-back">
@@ -85,15 +93,12 @@ const projects = [
     transition: opacity 180ms ease, transform 260ms ease;
     pointer-events: none;
   }
-  .italian-logo { display: block; width: 112px; height: 112px; }
-  .incoming-logo {
-    font-family: var(--mono);
-    font-size: 34px;
-    line-height: 1;
-    letter-spacing: -1.5px;
-    color: var(--muted);
+  .italian-logo, .hp-logo { display: block; width: 112px; height: 112px; }
+  .hp-logo {
+    background: var(--accent);
+    -webkit-mask: url('/projects/hpquiz.svg') center / contain no-repeat;
+    mask: url('/projects/hpquiz.svg') center / contain no-repeat;
   }
-  .incoming-logo > span { color: var(--accent); }
   .project-back {
     flex-direction: column;
     padding: 16px;
@@ -112,14 +117,12 @@ const projects = [
   @media (max-width: 680px) {
     .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
     .project-card { height: 220px; gap: 14px; }
-    .italian-logo { width: 92px; height: 92px; }
-    .incoming-logo { font-size: 27px; }
+    .italian-logo, .hp-logo { width: 92px; height: 92px; }
   }
   @media (max-width: 400px) {
     .logo-catalogue { padding: 32px 16px; }
     .project-grid { gap: 14px; }
-    .italian-logo { width: 80px; height: 80px; }
-    .incoming-logo { font-size: 23px; letter-spacing: -1px; }
+    .italian-logo, .hp-logo { width: 80px; height: 80px; }
     .project-back { padding: 7px; }
     .project-caption { font-size: 11px; }
     .project-back p { font-size: 10px; }
