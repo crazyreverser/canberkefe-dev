@@ -2,6 +2,7 @@
 title: "Building HP Quiz with React and Cloudflare D1"
 description: "How HP Quiz keeps progress in the browser, validates shared scores on Cloudflare and publishes results only after moderation. An engineering note by Canberk Efe."
 pubDate: 2026-11-08
+updatedDate: 2026-11-09
 tags: [react, typescript, cloudflare, application-security]
 ---
 
@@ -15,7 +16,7 @@ A quiz needs to remember where someone stopped. That does not mean every unfinis
 
 HP Quiz keeps the current attempt in browser storage: its stable identifier, selected questions, shuffled option order, answers and checked questions. Reloading restores the same round. A retry of missed questions is a separate attempt, so practising a difficult scene does not replace the last score from a normal round.
 
-Shared results follow a different path. Sending a result is optional. The participant chooses a display name or an anonymous entry, gives permission for that particular submission, and sends the completed answers. Local progress remains useful even when the result service is temporarily unavailable.
+Shared results follow a different path. On a first Sorting Hat visit, participation is enabled with a visible opt-out before the test. The choice is remembered locally when possible. Participants can enter a display name, choose an anonymous entry, or keep their result private without entering a name. A new Hat result with participation enabled is sent for moderation automatically after security verification. Adding a film score or retrying a failed send requires the send button. Older completed Hat sessions are not enrolled automatically. Local progress remains useful even when the result service is temporarily unavailable.
 
 There is a boundary between finishing a quiz, sending it to the server and seeing it on the public board. Those are three separate events.
 
@@ -52,6 +53,10 @@ The app records a small set of anonymous activity totals: quiz start, quiz compl
 These totals answer a practical product question: which films and round lengths are being used? They do not answer how many distinct humans visited. Browser blocking, retries and the same person using different devices make that distinction important.
 
 Cloudflare Web Analytics provides a separate view of visits and page views. Moderated result counts, anonymous activity counts and web traffic should be read as different measurements.
+
+Separate records, accessible only to the administrator, track a browser tab session’s last reported page and quiz question. The browser sends a random session identifier and limited progress fields, without names, answers or private attempt URLs. The server stores an HMAC of that identifier alongside the request’s IP address and the approximate city, region and country supplied by Cloudflare. Visits remain visible for 90 days after their last report; request-triggered cleanup removes expired rows in bounded batches. The last question is the last received display state, not evidence of why someone stopped.
+
+Newly accepted result submissions also have a separate private network record. Retrying the same submission does not overwrite its original details. Older submissions remain without that metadata because it was not collected at the time. These private fields are excluded from the public board and its JSON export.
 
 ## Audio and saved progress need visible recovery
 

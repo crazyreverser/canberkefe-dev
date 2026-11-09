@@ -7,7 +7,7 @@ export default defineConfig({
   vite: { server: { strictPort: true }, preview: { strictPort: true } },
   site: 'https://canberkefe.dev',
   trailingSlash: 'always',
-  integrations: [mdx(), sitemap({ filter: (page) => !page.endsWith('/404/') })],
+  integrations: [mdx(), sitemap({ filter: (page) => !['/404/', '/tools/'].some(path => page.endsWith(path)) })],
   markdown: {
     shikiConfig: {
       theme: 'github-dark-dimmed',

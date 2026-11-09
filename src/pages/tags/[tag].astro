@@ -19,8 +19,18 @@ export async function getStaticPaths() {
 
 const { tag, posts } = Astro.props;
 const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, '.');
+const tagLabels: Record<string, string> = {
+  react: 'React',
+  typescript: 'TypeScript',
+  cloudflare: 'Cloudflare',
+  'application-security': 'application security',
+};
+const tagLabel = tagLabels[tag] ?? tag.replace(/-/g, ' ');
+const description = posts.length
+  ? `Read Canberk Efe’s published writing on ${tagLabel}, including “${posts[0].data.title}”.`
+  : `Published writing by Canberk Efe on ${tagLabel}.`;
 ---
-<Base title={`#${tag}`} description={`Posts tagged #${tag}.`}>
+<Base title={`#${tag}`} description={description}>
   <div class="page-stage">
     <div class="page-title-block">
       <div class="page-kicker">~/tags/{tag}</div>
@@ -44,6 +54,6 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, '.');
       ))}
     </ul>
 
-    <a class="back-link" href="/tags">← all tags</a>
+    <a class="back-link" href="/tags/">← all tags</a>
   </div>
 </Base>

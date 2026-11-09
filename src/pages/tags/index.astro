@@ -9,7 +9,7 @@ posts.forEach((p) =>
 );
 const tags = [...tagCount.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 ---
-<Base title="tags" description="Browse posts by tag.">
+<Base title="tags" description="Browse Canberk Efe’s writing on React, TypeScript, Cloudflare and application security, grouped by topic.">
   <div class="page-stage">
     <div class="page-title-block">
       <div class="page-kicker">~/tags</div>
@@ -23,6 +23,6 @@ const tags = [...tagCount.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCo
       ))}
     </div>
 
-    <a class="back-link" href="/blog">← all posts</a>
+    <a class="back-link" href="/blog/">← all posts</a>
   </div>
 </Base>
